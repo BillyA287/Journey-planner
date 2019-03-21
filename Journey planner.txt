@@ -1,0 +1,186 @@
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+
+import java.util.Scanner;
+
+public class ScannerProjectEDX {
+
+    public static void main (String[] args) {
+
+
+
+        Scanner sc = new Scanner( System.in );
+
+        String userName;
+
+        System.out.println( "Hi, what is your name?" );
+
+        userName = sc.nextLine();
+
+        System.out.println( "Hi " + userName + " nice to meet you, where are you travelling to?" );
+
+        String placeName;
+
+        placeName = sc.nextLine();
+
+        System.out.println( placeName + " is a cool place " + userName + "! Sounds like a great trip!" );
+
+        budget();
+
+        timeDifference();
+
+        countryArea();
+
+    }
+
+
+
+
+    public static void budget ( ) {
+
+        Scanner sc = new Scanner( System.in );
+
+        BigDecimal numberOfDays;
+
+        int dayHours= 24;
+
+        int daySeconds= 86400;
+
+
+        BigDecimal moneyToSpend;
+
+        BigDecimal moneyConverter;
+
+        String currencyName;
+
+        String daysMinutes;
+
+        String howMuchwasSpent;
+
+        String spendingLimit;
+
+        System.out.println( " How many days are you going to spend at your destination? " );
+
+        numberOfDays = sc.nextBigDecimal();
+
+        System.out.println( numberOfDays + " days? Cool!" );
+
+        System.out.println( " How much money, in USD, are you planing to spend on your trip? " );
+
+        moneyToSpend = sc.nextBigDecimal();
+
+        System.out.println( moneyToSpend + " That should be enough to last your whole holiday! " );
+
+        System.out.println( " What is the three letter currency symbol for your travel destination? " );
+
+        currencyName = sc.next();
+
+        System.out.println( " Oh I see " + currencyName );
+
+        System.out.println( "\n" + " How many " + currencyName + " are there in 1 USD? " );
+
+        moneyConverter = sc.nextBigDecimal();
+
+        System.out.println( " cool " + moneyConverter );
+
+        System.out.println( " based on what you have said, you are going to spend approximately " +  numberOfDays + " Days " +  dayHours + " hours " +  daySeconds + " seconds " );
+
+        daysMinutes = sc.nextLine();
+
+        System.out.println( daysMinutes );
+
+        BigDecimal amountInDestinationCurrency = moneyConverter.multiply( moneyToSpend );
+
+        BigDecimal divisionAnswerMoneySpent =  amountInDestinationCurrency.divide( numberOfDays );
+
+        System.out.println(" your total budget for the trip is USD is " +  moneyToSpend + " how does that sound? " );
+
+        howMuchwasSpent = sc.nextLine();
+
+        System.out.println( howMuchwasSpent );
+
+        BigDecimal divisionAnswer =  moneyToSpend.divide( numberOfDays, RoundingMode.HALF_UP );
+
+       System.out.println( " Your total budget for the holiday is " + divisionAnswerMoneySpent );
+
+       System.out.println( " So this means, your daily spending allowance is "  +  divisionAnswer + " I thought this would be helpful for you to know your daily spend cap! " );
+
+      spendingLimit = sc.nextLine();
+
+       System.out.println( spendingLimit );
+
+
+
+    }
+    public static void timeDifference ( ) {
+
+        Scanner sc = new Scanner( System.in );
+
+        BigDecimal midNight = BigDecimal.valueOf( 0 );
+
+        int midDay = 12;
+
+        BigDecimal timeDifference;
+
+        BigInteger timeWorks;
+
+        System.out.println(" What is the time difference, in hours, between your home and destination? " );
+
+        timeDifference = sc.nextBigDecimal();
+
+        System.out.print(timeDifference);
+
+        BigDecimal predictTime = timeDifference.add( BigDecimal.valueOf( midDay ) );
+
+        System.out.println(" That means that when it is noon at home it will be " + predictTime + " at your destination " );
+
+        BigDecimal noonTime = predictTime.subtract(midNight);
+
+        System.out.println(" That means when it is midnight at home, it will be " + noonTime +  " in your travel destination. " ) ;
+
+
+    }
+
+    private static double roundMyNumber(double myUnroundedNumber /*123.567*/)  {
+
+        double myUnroundedNumberTimes100;
+        myUnroundedNumberTimes100/*12356.7*/ = myUnroundedNumber * 100;
+
+        int  myUnroundedNumberTimes100AsAnInt;
+        myUnroundedNumberTimes100AsAnInt/*12356*/ = (int) myUnroundedNumberTimes100;
+
+        double myUnroundedNumberTimes100AsADouble;
+        myUnroundedNumberTimes100AsADouble/*12356.0*/ = myUnroundedNumberTimes100AsAnInt;
+
+        double myUnroundedNumberAdADoubleAgain;
+        myUnroundedNumberAdADoubleAgain/*123.56*/ = myUnroundedNumberTimes100AsADouble / 100;
+
+        return myUnroundedNumberAdADoubleAgain;
+
+    }
+    private static void countryArea(){
+
+        Scanner sc = new Scanner( System.in );
+
+        double miles = 0.621371;
+
+        BigDecimal areaInkm;
+
+        System.out.println( " what is the area of their travel destination country in km? " );
+
+        areaInkm = sc.nextBigDecimal();
+
+        BigDecimal totalArea = areaInkm.multiply( BigDecimal.valueOf( miles ) );
+        BigDecimal onehundred = BigDecimal.valueOf( 100 );
+        BigDecimal bigTotal =   totalArea.divide(onehundred);
+        System.out.print (areaInkm);
+        double bigTotalAsADouble = bigTotal.doubleValue();
+        double bigArea = roundMyNumber(bigTotalAsADouble);
+
+        System.out.println( " So that means, in miles the total distance will be " + bigArea + " miles " );
+
+
+
+
+
